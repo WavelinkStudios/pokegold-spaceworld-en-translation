@@ -27,11 +27,11 @@ InitializeNewGameWRAM:
 	xor a
 	call ByteFill
 
-	ld hl, wPlayerName
+ld hl, wPlayerName
 	ld bc, $1164
 	xor a
 	call ByteFill
-
+	
 	; Lots of other setup.
 
 	pop af
@@ -74,7 +74,6 @@ InitializeNewGameWRAM:
 
 	ld a, $B8
 	ld [wd15f], a
-
 	ld hl, wUnknownListLengthd1ea
 	ld a, ITEM_REPEL
 	ld [wCurItem], a
@@ -89,7 +88,7 @@ InitializeNewGameWRAM:
 
 	ret
 
-; Initializes a $FF-terminated list preceded by a length to
+; Initializes a 0xFF-terminated list preceded by a length to
 ; length 0, with an immediate terminator.
 InitializeByteList:
 	xor a
@@ -100,8 +99,8 @@ InitializeByteList:
 
 SECTION "engine/menu/main_menu.asm@MainMenu", ROMX
 
-MainMenu::
-	ld hl, wd4a9
+MainMenu:: ; 01:53CC
+	ld hl, wd4a9 
 	res 0, [hl]
 	call ClearTileMap
 	call GetMemSGBLayout
@@ -111,22 +110,15 @@ MainMenu::
 	call Function5388
 	ld hl, wce60
 	bit 0, [hl]
-	jr nz, .setMenuContinue
-	xor a
-	jr .skip
-.setMenuContinue
+	jr nz, .skip1
+	xor a ; new game
+	jr .next1
+.skip1
 	ld a, M_CONTINUE
-.skip
-	ldh a, [hJoyState]
-	and D_DOWN | B_BUTTON | A_BUTTON
-	cp D_DOWN | B_BUTTON | A_BUTTON
-	jr nz, .setMenuPlay
-	ld a, M_SET_TIME
-	jr .triggerMenu
-.setMenuPlay
-	ld a, M_PLAY_GAME
-.triggerMenu
-	ld [wWhichIndexSet], a
+	ld a, M_NEW_GAME ; the check above is wrong somehow: bit 0 of $ce60
+	                 ; is set even when there's no saved game.
+.next1
+	ld [wWhichIndexSet],a
 	ld hl, MainMenuHeader
 	call LoadMenuHeader
 	call OpenMenu
@@ -135,75 +127,77 @@ MainMenu::
 	ld hl, MainMenuJumptable
 	ld a, [wMenuSelection]
 	jp CallJumptable
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 
-MainMenuHeader:
+MainMenuHeader: ; 01:5418
 	db MENU_BACKUP_TILES
-	menu_coords 0, 0, 13, 7
-	; menu_coords 0, 0, 14, 7 ; extended border from 13 to 14 to fit translated text
+	menu_coords 0, 0, 14, 7 ; extended border from 13 to 14 to fit translated text
 	dw .MenuData
 	db 1 ; default option
 
-.MenuData:
+.MenuData: ; 01:5420
 	db $80
 	db 0 ; items
 	dw MainMenuItems
 	db $8a, $1f
 	dw .Strings
 
-.Strings:
-	db "つづきから　はじめる@"
-	db "さいしょから　はじめる@"
-	db "せっていを　かえる@"
-	db "#を　あそぶ@"
-	db "じかんセット@"
+.Strings: ; 01:5428
+	db "CONTINUE@"
+	db "NEW GAME@"
+	db "OPTIONS@"
+	db "PLAY POKéMON@"
+	db "TIME@"
+	db "@@@" 
 
-;.Strings:
-;	db "CONTINUE@"
-;	db "NEW GAME@"
-;	db "OPTIONS@"
-;	db "PLAY POKéMON@"
-;	db "TIME@"
-
-MainMenuJumptable:
+MainMenuJumptable: ; 01:5457
 	dw MainMenuOptionContinue
 	dw StartNewGame
 	dw MenuCallSettings
-	dw StartNewGame
+	dw StartDemo
 	dw MainMenuOptionSetTime
 
 MainMenuItems:
 
 NewGameMenu:
-	db 2
+	db 4
 	db NEW_GAME
-	db OPTION
-	db -1
-
-ContinueMenu:
-	db 3
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db -1
-
-PlayPokemonMenu:
-	db 2
-	db PLAY_POKEMON
-	db OPTION
-	db -1
-
-PlayPokemonSetTimeMenu:
-	db 3
 	db PLAY_POKEMON
 	db OPTION
 	db SET_TIME
 	db -1
 
-MainMenuOptionSetTime::
+ContinueMenu:
+	db 5
+	db CONTINUE
+	db NEW_GAME
+	db PLAY_POKEMON
+	db OPTION
+	db SET_TIME
+	db -1
+	
+	nop
+	nop
+	nop
+	nop
+	nop
+
+MainMenuOptionSetTime:: ; 5473
 	callab SetTime
 	ret
 
-MainMenuOptionContinue::
+MainMenuOptionContinue:: ;547C
 	callab Function14624
 	call DisplayContinueGameInfo
 .loop
@@ -233,7 +227,7 @@ MainMenuOptionContinue::
 	call DelayFrames
 	jp OverworldStart
 
-DisplayContinueGameInfo::
+DisplayContinueGameInfo:: ; 54BF
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 4, 7
@@ -258,7 +252,7 @@ DisplayContinueGameInfo::
 	call DelayFrames
 	ret
 
-PrintNumBadges::
+PrintNumBadges:: ;54FA
 	push hl
 	ld hl, wJohtoBadges
 	ld b, $01 ; only Johto Badges
@@ -268,7 +262,7 @@ PrintNumBadges::
 	ld bc, $0102 ; flags and constants for this? 1 byte source, 2 digit display
 	jp PrintNumber
 
-PrintNumOwnedMons::
+PrintNumOwnedMons:: ; 550D
 	push hl
 	ld hl, wPokedexOwned
 	ld b, $20 ; flag_array NUM_POKEMON?
@@ -278,7 +272,7 @@ PrintNumOwnedMons::
 	ld bc, $0103 ; 1 byte, 3 digit
 	jp PrintNumber
 
-PrintPlayTime::
+PrintPlayTime:: ; 5520
 	ld de, hRTCHours
 	ld bc, $0103 ; 1 byte, 3 digit
 	call PrintNumber
@@ -294,15 +288,14 @@ PlayerInfoText:
 	next "#ずかん　　　　ひき"
 	next "プレイじかん"
 	text_end
-
-;PlayerInfoText:
-;	db   "PLAYER"
-;	next "BADGES"
-;	next "POKéDEX"
-;	next "TIME"
-;	text_end
-
-StartNewGame::
+	
+StartNewGame:: ; 555C
+	ld a,1
+	jp StartGame
+StartDemo::
+	xor a
+StartGame::
+	push af
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld de, MUSIC_OAK_INTRO
@@ -315,8 +308,9 @@ StartNewGame::
 	call ClearWindowData
 	xor a
 	ldh [hMapAnims], a
-	ld a, [wDebugFlags]
-	bit DEBUG_FIELD_F, a
-	jp z, DemoStart
-	call DebugSetUpPlayer
-	jp IntroCleanup
+	pop af
+	and a
+	jr z, DemoStart
+	jp GameStart
+	
+; 558D
