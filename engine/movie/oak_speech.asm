@@ -368,8 +368,14 @@ DemoItemList::
 DemoPlayerName::
 	db "サトシ@"
 
+;DemoPlayerName::
+;	db "ASH@"
+
 DemoRivalName::
 	db "シゲル@"
+
+;DemoRivalName::
+;	db "GARY@"
 
 OakSpeechDemo::
 	text "ようこそ"
@@ -395,6 +401,33 @@ OakSpeechDemo::
 
 	para "まけないよう　がんばって　くれい！"
 	prompt
+
+;OakSpeechDemo::
+;	text "Welcome... to the"
+;	line "world of POKéMON!"
+;	cont "As you may know,"
+;	cont "I am PROF.OAK!"
+;
+;	para "I brought you here"
+;	line "today because I"
+;	cont "need your help "
+;	cont "putting together"
+;	cont "a new POKéDEX!"
+;
+;	para "Naturally, I have"
+;	line "prepared a POKéMON"
+;	cont "and a PACK."
+;
+;	para "In the PACK you'll"
+;	line "find POTIONs and"
+;	cont "POKé BALLs, so no"
+;	cont "need for worry!"
+;
+;	para "Your RIVAL's gone"
+;	line "ahead already."
+;
+;	para "Hang in there!"
+;	prompt
 
 OakSpeech1::
 	text "いやあ　またせた！"
@@ -477,8 +510,14 @@ CopyNameDebug:
 DebugPlayerName:
 	db "コージ@"
 
+;DebugPlayerName:
+;	db "KOJI@"
+
 DebugRivalName:
 	db "レッド@"
+
+;DebugRivalName:
+;	db "RED@"
 
 ChoosePlayerName::
 	call PanPortraitRight

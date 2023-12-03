@@ -65,6 +65,7 @@ DisplayStartMenu:
 .StartMenuHeader:
 	db MENU_BACKUP_TILES
 	menu_coords $0C, 00, $13, $11
+;	menu_coords $0A, 00, $13, $11 ; changed start of border drawing to fit English text
 	dw .MenuData
 	db 1 ; default option
 
@@ -85,6 +86,17 @@ DisplayStartMenu:
 	db "とじる@"
 	db "わくせん@"
 	db "りセット@"
+
+;.Strings:
+;	db "POKéDEX@"
+;	db "POKéMON@"
+;	db "PACK@"
+;	db "<PLAYER>@"
+;	db "SAVE@"
+;	db "OPTION@"
+;	db "EXIT@"
+;	db "FRAMES@"
+;	db "RESET@"
 
 StartMenuJumpTable:
 	dw StartMenu_Pokedex
@@ -414,6 +426,7 @@ DebugBackpackLoop:
 
 .ToolsPocketText
 	db "　　　　　　ふつうの　どうぐ　　　　　　@"
+;	db "Item Bag@"
 
 .NoTools
 	ld hl, KeyItemsPocketHeader
@@ -434,6 +447,7 @@ DebugBackpackLoop:
 
 KeyItemsPocketText:
 	db "　　　　　　だいじな　もの　　　　　　　@"
+;	db "Key Item Bag@"
 
 NondebugBackpackLoop:
 	ld hl, BackpackMenuHeader
@@ -454,6 +468,7 @@ NondebugBackpackLoop:
 
 BackpackHeaderText:
 	db "　　　　　　りュックの　なか　　　　　@"
+;	db "Inventory@"
 
 HandleBackpackInput:
 	ld a, [wMenuJoypad]
@@ -583,6 +598,13 @@ DebugSelectedItemMenu:
 	db "すてる@" ; toss
 	db "とうろく@" ; register
 
+;.DebugSelectedItemMenuText
+;	db $C0
+;	db 3
+;	db "USE@"
+;	db "TOSS@"
+;	db "REGISTER@"
+
 SelectedItemMenu:
 	db MENU_BACKUP_TILES
 	menu_coords $0E, $0A, $13, $0E
@@ -594,6 +616,12 @@ SelectedItemMenu:
 	db 2
 	db "つかう@" ; use
 	db "すてる@" ; toss
+
+;.SelectedItemMenuText
+;	db $C0
+;	db 2
+;	db "USE@"
+;	db "TOSS@"
 
 TossItemSelection:
 	ld de, wNumBagItems

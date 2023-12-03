@@ -113,6 +113,9 @@ GetNamingScreenSetup:
 .NameText:
 	db "あなた　の　なまえは？@"
 
+;.NameText:
+;	db "YOUR NAME?@"
+
 .Rival:
 	ld de, SilverSpriteGFX
 	call .LoadSprite
@@ -126,6 +129,10 @@ GetNamingScreenSetup:
 ; the ret just preceeding this would make the first word Rival.
 	db "ライバル　の　なまえは？@"
 
+;.RivalText:
+; the ret just preceeding this would make the first word Rival.
+;	db "RIVAL'S NAME?@"
+
 .Mom:
 	ld de, MomSpriteGFX
 	call .LoadSprite
@@ -137,6 +144,9 @@ GetNamingScreenSetup:
 
 .MomText:
 	db "ははおや　の　なまえは？@"
+
+;.MomText:
+;	db "MOM'S NAME?@"
 
 .Box:
 	ld de, PokeBallSpriteGFX
