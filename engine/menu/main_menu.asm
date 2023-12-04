@@ -127,18 +127,6 @@ MainMenu:: ; 01:53CC
 	ld hl, MainMenuJumptable
 	ld a, [wMenuSelection]
 	jp CallJumptable
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
 
 MainMenuHeader: ; 01:5418
 	db MENU_BACKUP_TILES
@@ -149,7 +137,7 @@ MainMenuHeader: ; 01:5418
 .MenuData: ; 01:5420
 	db $80
 	db 0 ; items
-	dw MainMenuItems
+	dw ContinueMenu ; changed from MainMenuItems to force the continue screen to show
 	db $8a, $1f
 	dw .Strings
 
@@ -186,12 +174,6 @@ ContinueMenu:
 	db OPTION
 	db SET_TIME
 	db -1
-	
-	nop
-	nop
-	nop
-	nop
-	nop
 
 MainMenuOptionSetTime:: ; 5473
 	callab SetTime
@@ -282,11 +264,18 @@ PrintPlayTime:: ; 5520
 	ld bc, $8102 ; PRINTNUM_LEADINGZEROS, 1 byte, 2 digit
 	jp PrintNumber
 
+;PlayerInfoText:
+;	db   "しゅじんこう"
+;	next "もっているバッジ　　　　こ"
+;	next "#ずかん　　　　ひき"
+;	next "プレイじかん"
+;	text_end
+
 PlayerInfoText:
-	db   "しゅじんこう"
-	next "もっているバッジ　　　　こ"
-	next "#ずかん　　　　ひき"
-	next "プレイじかん"
+	db   "Player"
+	next "Badges"
+	next "#Dex"
+	next "Time"
 	text_end
 	
 StartNewGame:: ; 555C

@@ -285,10 +285,10 @@ PlaceCommandCharacter:
 	jp PlaceNextChar
 
 TMCharText::      db "わざマシン@"
-TrainerCharText:: db "トレーナー@"
-PCCharText::      db "パソコン@"
-RocketCharText::  db "ロケットだん@"
-POKeCharText::    db "ポケモン@"
+TrainerCharText:: db "トレーナー@" ; "Trainer"
+PCCharText::      db "パソコン@" ; "Personal Computer" or "PC"
+RocketCharText::  db "ロケットだん@" ; "Rocket"
+POKeCharText::    db "POKé@"
 SixDotsCharText:: db "⋯⋯@"
 EnemyText::       db "てきの　@"
 GaCharacterTExt:: db "が　@"

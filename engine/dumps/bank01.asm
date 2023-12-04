@@ -3237,6 +3237,13 @@ Text65fd:
 	para "しかし　"
 	text_end
 
+;Text65fd:
+;	text_from_ram wStringBuffer2
+;	text " wants to"
+;	para "learn a new move!"
+;	line "but <⋯⋯>"
+;	text_end
+
 Text6610:
 	text_from_ram wcd11
 	text "は　わざを　４つ"
@@ -3244,15 +3251,32 @@ Text6610:
 	para ""
 	text_end
 
+;Text6610:
+;	text_from_ram wcd11
+;	text " can't learn"
+;	line "more than 4 moves!"
+;	para ""
+;	text_end
+
 Text662e:
 	text_from_ram wStringBuffer2
 	text "の　かわりに"
 	line "ほかの　わざを　わすれさせますか？"
 	done
 
+;Text662e:
+;	text_from_ram wStringBuffer2
+;	text "forget another"
+;	line "move instead?"
+;	done
+
 Text664b:
 	text "１　２の　<⋯⋯>"
 	text_end
+
+;Text664b:
+;	text "1, 2, and <⋯⋯>"
+;	text_end
 
 Text6653:
 	text_exit
@@ -3267,6 +3291,10 @@ Text6653:
 Text6661:
 	text "　ポカン！"
 	text_end
+
+;Text6661:
+;	text "　pokan！"
+;	text_end
 
 Text6668:
 	text_exit
@@ -3286,10 +3314,23 @@ Text6673:
 	para "そして<⋯⋯>！"
 	prompt
 
+;Text6673:
+;	text_from_ram wStringBuffer1
+;	text " forgot"
+;	line "how to use it!"
+;	para "And learned <⋯⋯>!"
+;	prompt
+
 Text6691:
 	text "それは　たいせつなわざです"
 	line "わすれさせることは　できません！"
 	prompt
+
+;Text6691:
+;	text "This move is too"
+;	line "important to be"
+;	line "forgotten!"
+;	prompt
 
 Function66b1:
 	ld hl, wcd74
@@ -3413,6 +3454,12 @@ Text6788:
 	text "に"
 	line "ニックネームを　つけますか？"
 	done
+
+;Text6788:
+;	text_from_ram wStringBuffer1
+;	text "Would you like to"
+;	line "give it a nickname?"
+;	done
 
 Function679d:
 	ld de, wFieldMoveScriptID
@@ -4020,26 +4067,26 @@ Function7a93:
 	lb bc, 1, 18
 	call ClearBox
 	coord hl, 1, 1
-	ld de, Text7bad
+	ld de, TextSpeedOptionText
 	call PlaceString
 	coord hl, 1, 5
-	ld de, Text7bc9
+	ld de, BattleAnimationOptionText
 	call PlaceString
 	coord hl, 1, 9
-	ld de, Text7be8
+	ld de, BattleStyleOptionText
 	call PlaceString
 	coord hl, 1, 13
-	ld de, Text7c03
+	ld de, AudioTypeOptionText
 	call PlaceString
 	coord hl, 1, 16
-	ld de, Text7c12
+	ld de, OptionMenuEndText
 	call PlaceString
 	coord hl, 6, 15
 	ld b, $01
 	ld c, $0b
 	call DrawTextBox
 	coord hl, 7, 16
-	ld de, Text7c17
+	ld de, SetFrameOptionsText
 	call PlaceString
 	ld a, [wActiveFrame]
 	coord hl, 17, 16
@@ -4047,59 +4094,59 @@ Function7a93:
 	ld [hl], a
 	ret
 
-Text7bad:
-	db "はなしの　はやさ"
-	next "　はやい　　　　ふつう　　　　おそい"
-	text_end
-
-;Text7bad:
-;	db "Text Speed"
-;	next "　Fast　　　Med　　　　Slow"
+;TextSpeedOptionText: ; was Text7bad
+;	db "はなしの　はやさ"
+;	next "　はやい　　　　ふつう　　　　おそい"
 ;	text_end
 
-Text7bc9:
-	db "せんとう　アニメーション"
-	next "　じっくり　みる　　とばして　みる"
+TextSpeedOptionText:
+	db "Text Speed"
+	next "　Fast　　　Med　　　　Slow"
 	text_end
 
-;Text7bc9:
-;	db "Battle Animation"
-;	next "　On　　　　　　　Off"
+;BattleAnimationOptionText: ; was Text7bc9
+;	db "せんとう　アニメーション"
+;	next "　じっくり　みる　　とばして　みる"
 ;	text_end
 
-Text7be8:
-	db "しあいの　ルール"
-	next "　いれかえタイプ　　かちぬきタイプ"
+BattleAnimationOptionText:
+	db "Battle Animation"
+	next "　On　　　　　　　Off"
 	text_end
 
-;Text7be8:
-;	db "Battle Style"
-;	next "　Shift　　　　Set"
+;BattleStyleOptionText: ; was Text7be8
+;	db "しあいの　ルール"
+;	next "　いれかえタイプ　　かちぬきタイプ"
 ;	text_end
 
-Text7c03:
-	db "　モノラル　　　　　ステレオ"
+BattleStyleOptionText:
+	db "Battle Style"
+	next "　Shift　　　　Set"
 	text_end
 
-;Text7c03:
-;	db "　Mono　　　　　Stereo"
+;AudioTypeOptionText: ; was Text7c03
+;	db "　モノラル　　　　　ステレオ"
 ;	text_end
 
-Text7c12:
-	db "　おわり"
+AudioTypeOptionText:
+	db "　Mono　　　　　Stereo"
 	text_end
 
-;Text7c12:
-;	db "　END"
+;OptionMenuEndText: ; was Text7c12
+;	db "　おわり"
 ;	text_end
 
-Text7c17:
-	db "　わく　を　かえる　"
+OptionMenuEndText:
+	db "　END"
 	text_end
 
-;Text7c17:
-;	db "　Set Frame　"
+;SetFrameOptionsText: ; was Text7c17
+;	db "　わく　を　かえる　"
 ;	text_end
+
+SetFrameOptionsText:
+	db "　Set Frame　"
+	text_end
 
 Table7c22:
 	db $0F
