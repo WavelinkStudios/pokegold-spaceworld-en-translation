@@ -4100,8 +4100,8 @@ Function7a93:
 ;	text_end
 
 TextSpeedOptionText:
-	db "Text Speed"
-	next "　Fast　　　Med　　　　Slow"
+	db "TEXT SPEED"
+	next "　FAST　　　MID　　　　SLOW"
 	text_end
 
 ;BattleAnimationOptionText: ; was Text7bc9
@@ -4110,8 +4110,8 @@ TextSpeedOptionText:
 ;	text_end
 
 BattleAnimationOptionText:
-	db "Battle Animation"
-	next "　On　　　　　　　Off"
+	db "BATTLE ANIMATION"
+	next "　ON　　　　　　　OFF"
 	text_end
 
 ;BattleStyleOptionText: ; was Text7be8
@@ -4120,8 +4120,8 @@ BattleAnimationOptionText:
 ;	text_end
 
 BattleStyleOptionText:
-	db "Battle Style"
-	next "　Shift　　　　Set"
+	db "BATTLE STYLE"
+	next "　SHIFT　　　　SET"
 	text_end
 
 ;AudioTypeOptionText: ; was Text7c03
@@ -4129,7 +4129,7 @@ BattleStyleOptionText:
 ;	text_end
 
 AudioTypeOptionText:
-	db "　Mono　　　　　Stereo"
+	db "　MONO　　　　　STEREO"
 	text_end
 
 ;OptionMenuEndText: ; was Text7c12
@@ -4145,7 +4145,7 @@ OptionMenuEndText:
 ;	text_end
 
 SetFrameOptionsText:
-	db "　Set Frame　"
+	db "　FRAME　"
 	text_end
 
 Table7c22:

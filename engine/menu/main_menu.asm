@@ -272,10 +272,10 @@ PrintPlayTime:: ; 5520
 ;	text_end
 
 PlayerInfoText:
-	db   "Player"
-	next "Badges"
-	next "#Dex"
-	next "Time"
+	db   "PLAYER"
+	next "BADGES"
+	next "#DEX"
+	next "TIME"
 	text_end
 	
 StartNewGame:: ; 555C

@@ -2175,11 +2175,17 @@ DrawTrainerCardMainPage:
 	ld [hl], "▶"
 	ret
 
+;TrainerCardText:
+;	db "なまえ／<NEXT><NEXT>おこづかい<NEXT><NEXT>#ずかん@"
+
 TrainerCardText:
-	db "なまえ／<NEXT><NEXT>おこづかい<NEXT><NEXT>#ずかん@"
+	db "NAME／<NEXT><NEXT>MONEY<NEXT><NEXT>#DEX@"
+
+;TrainerCardDexEntriesText:
+;	db "ひき@"
 
 TrainerCardDexEntriesText:
-	db "ひき@"
+	db "SEEN@"
 
 TrainerCardNameTiles:
 	db $0A, $0C, $0D, $0E, $0F, $FF
@@ -2214,8 +2220,11 @@ DrawTrainerCaseBadgePage:
 	call PlaceTrainerCardTiles
 	ret
 
+;TrainerCardLeagueBadgesTextTiles:
+;	db "#りーグバッジ@"
+
 TrainerCardLeagueBadgesTextTiles:
-	db "#りーグバッジ@"
+	db "#BADGES@"
 
 TrainerCardBadgesTiles:
 	db $0A, $0B, $0C, $0D, $0E, $FF

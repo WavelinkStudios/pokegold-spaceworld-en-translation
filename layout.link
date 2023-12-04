@@ -109,6 +109,7 @@ ROMX $01
 	"engine/dumps/bank01.asm@ReanchorBGMap_NoOAMUpdate"
 	"engine/math/math.asm"
 	"data/items/attributes.asm"
+	"data/items/names.asm"
 	"engine/dumps/bank01.asm@Function771e"
 	"engine/overworld/object_collision.asm@GetSpritesNextTile"
 	"engine/dumps/bank01.asm@Function776e"
@@ -306,6 +307,8 @@ ROMX $13
 
 ROMX $14
 	org $4000
+	org $40dd
+	"data/types/names.asm"
 	org $4f10
 	"data/pokemon/base_stats.asm"
 	"data/pokemon/names.asm"
@@ -818,6 +821,8 @@ ROMX $36
 	"scripts/South.asm"
 	"data/maps/objects/North.asm"
 	"scripts/North.asm"
+	"data/maps/objects/Route1P1.asm"
+	"data/maps/objects/Route1P2.asm"
 	"data/maps/objects/Route2.asm"
 	"scripts/Route2.asm"
 	"data/maps/objects/HaitekuWestRoute.asm"
@@ -868,6 +873,8 @@ ROMX $36
 	"scripts/BullForestRoute3.asm"
 	"scripts/SilentHill.asm"
 	"engine/menu/set_time.asm"
+	"scripts/Route1P1.asm"
+	"scripts/Route1P2.asm"
 
 ROMX $37
 	org $4000
@@ -881,10 +888,17 @@ ROMX $37
 
 ROMX $38
 	org $4000
-	"data/maps/objects/Route1P1.asm"
-	"data/maps/objects/Route1P2.asm"
-	"scripts/Route1P1.asm"
-	"scripts/Route1P2.asm"
+	"engine/games/pikachu_minigame.asm@Pikachu Minigame"
+	org $5403
+	"gfx.asm@Poker GFX"
+	org $5f93
+	"gfx.asm@15 Puzzle GFX"
+	org $622b
+	"engine/games/memory_minigame.asm"
+	"gfx.asm@Matches GFX"
+	org $6886
+	"engine/games/picross_minigame.asm"
+	"gfx.asm@Picross GFX"
 
 ROMX $39
 	org $4000
@@ -947,29 +961,6 @@ ROMX $3f
 	org $67a1
 	"engine/menu/debug_menu.asm@Subgame Menu"
 
-ROMX $41
-	org $4000
-	"data/items/names.asm"
-
-ROMX $42
-	org $4000
-	"engine/games/pikachu_minigame.asm@Pikachu Minigame"
-	org $5403
-	"gfx.asm@Poker GFX"
-	org $5f93
-	"gfx.asm@15 Puzzle GFX"
-	org $622b
-	"engine/games/memory_minigame.asm"
-	"gfx.asm@Matches GFX"
-	org $6886
-	"engine/games/picross_minigame.asm"
-	"gfx.asm@Picross GFX"
-
-ROMX $43
-	org $4000
-	org $40dd
-	"data/types/names.asm"
-
 WRAM0
 	org $c000
 	"Music engine RAM"
@@ -992,3 +983,4 @@ SRAM 0
 	"Unknown, bank 0"
 	org $bffe
 	"Window Stack Top"
+	

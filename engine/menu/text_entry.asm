@@ -98,8 +98,11 @@ GetNamingScreenSetup:
 	call .StoreSpriteIconParams
 	ret
 
+;.NicknameText
+;	db "のニックネームは？@"
+
 .NicknameText
-	db "のニックネームは？@"
+	db " NICKNAME? @"
 
 .Player:
 	ld de, GoldSpriteGFX
@@ -110,11 +113,11 @@ GetNamingScreenSetup:
 	call .StoreSpriteIconParams
 	ret
 
-.NameText:
-	db "あなた　の　なまえは？@"
-
 ;.NameText:
-;	db "YOUR NAME?@"
+;	db "あなた　の　なまえは？@"
+
+.NameText:
+	db "YOUR NAME? @"
 
 .Rival:
 	ld de, SilverSpriteGFX
@@ -125,13 +128,13 @@ GetNamingScreenSetup:
 	call .StoreSpriteIconParams
 	ret
 
-.RivalText:
-; the ret just preceeding this would make the first word Rival.
-	db "ライバル　の　なまえは？@"
-
 ;.RivalText:
 ; the ret just preceeding this would make the first word Rival.
-;	db "RIVAL'S NAME?@"
+;	db "ライバル　の　なまえは？@"
+
+.RivalText:
+; the ret just preceeding this would make the first word Rival.
+	db "RIVAL'S NAME? @"
 
 .Mom:
 	ld de, MomSpriteGFX
@@ -142,11 +145,11 @@ GetNamingScreenSetup:
 	call .StoreSpriteIconParams
 	ret
 
-.MomText:
-	db "ははおや　の　なまえは？@"
-
 ;.MomText:
-;	db "MOM'S NAME?@"
+;	db "ははおや　の　なまえは？@"
+
+.MomText:
+	db "MOM'S NAME?  @"
 
 .Box:
 	ld de, PokeBallSpriteGFX
@@ -169,8 +172,11 @@ GetNamingScreenSetup:
 	call .StoreBoxIconParams
 	ret
 
+;.BoxText:
+;	db "バンク　の　なまえは？@"
+
 .BoxText:
-	db "バンク　の　なまえは？@"
+	db "BOX 　　 NAME? @"
 
 .LoadSprite:
 ; copies the sprite at de into the top of VRAM, as well as the sprite $C0 after de
