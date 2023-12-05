@@ -172,11 +172,11 @@ GetNamingScreenSetup:
 	call .StoreBoxIconParams
 	ret
 
-;.BoxText:
-;	db "バンク　の　なまえは？@"
-
 .BoxText:
-	db "BOX 　　 NAME? @"
+	db "バンク　の　なまえは？@"
+
+;.BoxText:
+;	db "BOX 　　 NAME? @"
 
 .LoadSprite:
 ; copies the sprite at de into the top of VRAM, as well as the sprite $C0 after de

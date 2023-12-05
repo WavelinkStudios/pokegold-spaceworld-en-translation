@@ -308,8 +308,11 @@ string_2d568:
 string_2d56e:
 	db "ーーー@"
 
+;string_2d572:
+;	db "タイプ／@"
+
 string_2d572:
-	db "タイプ／@"
+	db "TYPE／@"
 
 sub_2d577:
 	ld hl, $c2a3

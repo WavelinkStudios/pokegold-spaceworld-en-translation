@@ -1739,8 +1739,11 @@ PartyMenuAttributes:
 	dn 2, 0
 	db $F3
 
-PartyTypeText:
-	db "タイプ／　　　　　いりょく／@"
+;PartyTypeText:
+;	db "タイプ／　　　　　いりょく／@"
+
+PartyTypeText: ; Party summary moves list screen
+	db "TYP／　　　　　ATK／@" ; first text should be type but shortened due to text size limits
 
 PartyPokeDivider:
 	db "ーーー@"
@@ -2185,7 +2188,7 @@ TrainerCardText:
 ;	db "ひき@"
 
 TrainerCardDexEntriesText:
-	db "SEEN@"
+	db "@"
 
 TrainerCardNameTiles:
 	db $0A, $0C, $0D, $0E, $0F, $FF
@@ -2224,7 +2227,7 @@ DrawTrainerCaseBadgePage:
 ;	db "#りーグバッジ@"
 
 TrainerCardLeagueBadgesTextTiles:
-	db "#BADGES@"
+	db "GYM LEADERS@"
 
 TrainerCardBadgesTiles:
 	db $0A, $0B, $0C, $0D, $0E, $FF

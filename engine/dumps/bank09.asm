@@ -1317,26 +1317,35 @@ asm_24890:
 .text_248a2:
 	db "たエ゛うる@"
 	db "かう@"
-	db "やめる@"
+	db "やめる@" ; lit. "Stop"
 	db "くさかり@"
 	db "とんでけ@"
 	db "どんぶらこ@"
 	db "フルパワー@"
 	db "ひかりゴケ@"
-	db "うずしお@"
+	db "うずしお@" ; "Whirlpool"
 	db "とびはねる@"
 	db "あなをほる@"
-	db "テレポート@"
+	db "テレポート@" ; "Teleport"
 	db "タマゴうみ@"
 
-Text248e7:
-	db "つよさをみる@"
-	db "ならびかえ@"
-	db "そうび@"
-	db "キャンセル@"
-	db "もちわざ@"
-	db "メール@"
-	db "エラー！@"
+;Text248e7: ; The opotions in the party screen within the start menu
+;	db "つよさをみる@" ; "Stats"?
+;	db "ならびかえ@" ; "Switch"? The menu option to change party mon order
+;	db "そうび@" ; "Item"?
+;	db "キャンセル@" ; lit. "Cancel"
+;	db "もちわざ@" ; "Moves" ?
+;	db "メール@" ; lit. "Mail"
+;	db "エラー！@" ; lit. "Error"
+
+Text248e7: ; The opotions in the party screen within the start menu
+	db "STATS@"
+	db "SWITCH@"
+	db "ITEM@"
+	db "CANCEL@"
+	db "MOVE@"
+	db "MAIL@"
+	db "ERROR@"
 
 Data2490c:
 	db $f5, $01
